@@ -1,6 +1,8 @@
 import Card from "./components/card/card.component";
+
 // import { useState, useEffect } from 'react';
 
+import './app.styles.css';
 function App() {
   // const [data, setData] = useState([]);
 
@@ -14,7 +16,7 @@ function App() {
   // const {current.temp} = data;  
 
   return (
-    <div>
+    <div className='container' >
       <Card />
     </div>
   );
