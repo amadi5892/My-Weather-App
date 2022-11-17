@@ -1,23 +1,26 @@
 import './card.styles.css';
 
-const Card = () => {
+const Card = ({data}) => {
+    const {name} = data;
+    console.log(data)
+    // 80&#8457;
     return(
         <div className='card-container' >
             <div className="card-weather-container">
-                <h2 className='location'>NYC</h2>
-                <span className='temperature' >80&#8457;</span>
-                <h4 className='description' >Description</h4>
+                <h2 className='location'> {name} </h2>
+                {data.main ?  <span className='temperature' > {Math.ceil((data.main.temp - 273.15)*(9/5)+32)}&#8457; </span> : null }
+                {data.weather ? <h4 className='description' > {data.weather[0].description} </h4> : null}
                 <div className='sub-container' >
                     <div>
-                        <span className='sub-temperature' >85&#8457;</span>
+                        {data.main ? <span className='sub-temperature' >{Math.ceil((data.main.temp_max - 273.15)*(9/5)+32)}&#8457;</span> : null }
                         <p className='sub-description' >High</p>
                     </div>
                     <div>
-                        <span className='sub-temperature' >72&#8457;</span>
+                    {data.main ? <span className='sub-temperature' >{Math.ceil((data.main.temp_min - 273.15)*(9/5)+32)}&#8457;</span> : null }
                         <p className='sub-description' >Low</p>
                     </div>
                     <div>
-                        <span className='sub-temperature' >49%</span>
+                        {data.main ?                         <span className='sub-temperature' > {data.main.humidity}% </span> : null}
                         <p className='sub-description' >Humidity</p>
                     </div>
                 </div>
