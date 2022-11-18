@@ -1,21 +1,34 @@
 import Card from "./components/card/card.component";
+import SearchBox from "./components/search-box/search-box.component";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import './app.styles.css';
+import axios from "axios";
 function App() {
   const [data, setData] = useState([]);
+  const [search, setSearch] = useState('');
 
-  
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=a76dba64d19fccda93b110d929b0d271`
 
-  useEffect(() => {
-    fetch('https://api.openweathermap.org/data/2.5/weather?lat=40.730610&lon=-73.935242&appid=a76dba64d19fccda93b110d929b0d271').then(response => response.json()).then((data) => setData(data)
-    );
-  }, []);  
+  const onKeyPressHandler = (event) => {
+    if(event.key === 'Enter'){
+      axios.get(url).then((response) => {
+        setData(response.data);
+      })
+      setSearch('')
+    }
+  };
+
+  const onChangeHandler = (event) => {
+    const searchString = event.target.value;
+    setSearch(searchString);
+  };
 
   return (
     <div className='container' >
-      <Card data={data} />
+      <SearchBox onChangeHanlder={onChangeHandler} onKeyPressHandler={onKeyPressHandler}/>
+      <Card data={data} value={search} />
     </div>
   );
 }

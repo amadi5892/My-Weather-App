@@ -1,0 +1,14 @@
+.search-box {
+    margin-top: 30px;
+    height: 35px;
+    width: 250px;
+    border-radius: 20px;
+    border: solid whitesmoke;
+    background-color: rgba(254, 254, 254, 0.185);
+    color: rgb(143, 255, 255);
+}
+
+::placeholder {
+    color: rgb(143, 255, 255);
+    opacity: 1;
+}
